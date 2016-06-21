@@ -6,7 +6,7 @@ using System.Web;
 
 namespace TaskManager.Models
 {
-    public class Status
+    public class Priority
     {
         public byte Id { get; set; }
 
