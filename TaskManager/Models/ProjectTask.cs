@@ -6,7 +6,7 @@ using System.Web;
 
 namespace TaskManager.Models
 {
-    public class Task
+    public class ProjectTask
     {
         public int Id { get; set; }
 
