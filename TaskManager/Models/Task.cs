@@ -14,6 +14,12 @@ namespace TaskManager.Models
         [StringLength(255, MinimumLength = 5)]
         public string Name { get; set; }
 
+
+        public DateTime Deadline { get; set; }
+
+        public byte StatusId { get; set; }
+        public Status Status { get; set; }
+
         public int ProjectId { get; set; }
         public Project Project { get; set; }
     }
