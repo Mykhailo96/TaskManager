@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using TaskManager.Models;
+using System.Data.Entity;
 
 namespace TaskManager.Controllers.Api
 {
@@ -20,13 +21,13 @@ namespace TaskManager.Controllers.Api
         // GET api/tasks
         public IHttpActionResult GetTasks()
         {
-            return Ok(_context.ProjectTasks.ToList());
+            return Ok(_context.ProjectTasks.Include(t => t.Status).Include(t => t.Priority).ToList());
         }
 
         // GET api/tasks/1
         public IHttpActionResult GetTask(int id)
         {
-            var task = _context.ProjectTasks.SingleOrDefault(t => t.Id == id);
+            var task = _context.ProjectTasks.Include(t => t.Status).Include(t => t.Priority).SingleOrDefault(t => t.Id == id);
 
             if (task == null)
                 return NotFound();

@@ -6,11 +6,12 @@ using System.Web.Mvc;
 
 namespace TaskManager.Controllers
 {
-    public class HomeController : Controller
+    public class ProjectsController : Controller
     {
+        // GET: Projects
         public ActionResult Index()
         {
-            return View();
+            return View("List");
         }
     }
 }

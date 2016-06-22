@@ -14,7 +14,6 @@ namespace TaskManager.Models
         [StringLength(255, MinimumLength = 5)]
         public string Name { get; set; }
 
-
         public DateTime Deadline { get; set; }
 
         [Required]
@@ -24,10 +23,12 @@ namespace TaskManager.Models
 
         [Required]
         public byte PriorityId { get; set; }
+
         public Priority Priority { get; set; }
 
         [Required]
         public int ProjectId { get; set; }
+
         public Project Project { get; set; }
     }
 }

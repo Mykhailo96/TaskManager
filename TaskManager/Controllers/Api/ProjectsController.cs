@@ -20,7 +20,9 @@ namespace TaskManager.Controllers.Api
         // GET api/projects
         public IHttpActionResult GetProjects()
         {
-            return Ok(_context.Projects.ToList());
+            var projects = _context.Projects.ToList();
+
+            return Ok(projects);
         }
 
         // GET api/projects/1
