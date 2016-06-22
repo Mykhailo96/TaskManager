@@ -191,6 +191,10 @@
     <Compile Include="Migrations\201606221140489_PopulateStatusTable.Designer.cs">
       <DependentUpon>201606221140489_PopulateStatusTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606221150271_PopulatePriorityTable.cs" />
+    <Compile Include="Migrations\201606221150271_PopulatePriorityTable.Designer.cs">
+      <DependentUpon>201606221150271_PopulatePriorityTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -276,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606221140489_PopulateStatusTable.resx">
       <DependentUpon>201606221140489_PopulateStatusTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606221150271_PopulatePriorityTable.resx">
+      <DependentUpon>201606221150271_PopulatePriorityTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
