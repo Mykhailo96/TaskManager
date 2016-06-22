@@ -1,6 +1,4 @@
-﻿@model IEnumerable<TaskManager.Models.Project>
-
-@{
+﻿@{
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -65,7 +63,6 @@
 
             $("#buttonNew").on("click", function (e) {
                 e.preventDefault();
-                console.log("New project");
                 var page = $(this).attr("data-href");
                 $(".renderDiv").load(page);
             });

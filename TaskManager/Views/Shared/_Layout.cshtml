@@ -21,14 +21,16 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("My Projects", "Index", "Projects")</li>
+                    <li><a href="/projects/index" class="reference">My Projects</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
+        <div id="partialDiv">
+            @RenderBody()
+        </div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Task Manager</p>
@@ -37,5 +39,6 @@
 
     @Scripts.Render("~/bundles/lib")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/_layout.js"></script>
 </body>
 </html>
