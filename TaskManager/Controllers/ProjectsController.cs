@@ -13,5 +13,10 @@ namespace TaskManager.Controllers
         {
             return View("List");
         }
+
+        public ActionResult New()
+        {
+            return View("ProjectForm");
+        }
     }
 }

@@ -2,24 +2,25 @@
 
 @{
     ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Your Projects</h2>
-<!--<p>
-    @Html.ActionLink("New Project", "New", "Customers", null, new { @class = "btn btn-primary" })
-</p>
-    -->
+<div class="renderDiv">
+    <h2>Projects</h2>
+    <p>
+        <button id="buttonNew" class="btn btn-primary" data-href="/Projects/New">New Project</button>
+    </p>
 
-<table id="projects" class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
+    <table id="projects" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
 @section scripts
 {
     <script>
@@ -38,7 +39,7 @@
                     },
                     {
                         data: "id",
-                        render: function(data) {
+                        render: function (data) {
                             return "<button class='btn-link js-delete' data-project-id=" + data + ">Delete</button>";
                         }
                     }
@@ -60,6 +61,13 @@
                         });
                     }
                 });
+            });
+
+            $("#buttonNew").on("click", function (e) {
+                e.preventDefault();
+                console.log("New project");
+                var page = $(this).attr("data-href");
+                $(".renderDiv").load(page);
             });
         });
     </script>
