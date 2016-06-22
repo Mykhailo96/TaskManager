@@ -67,6 +67,7 @@ namespace TaskManager.Controllers.Api
         }
 
         // DELETE api/projects/1
+        [HttpDelete]
         public IHttpActionResult DeleteProject(int id)
         {
             var projectInDb = _context.Projects.SingleOrDefault(p => p.Id == id);
