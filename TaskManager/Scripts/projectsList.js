@@ -37,10 +37,4 @@
             }
         });
     });
-
-    $("#buttonNew").on("click", function (e) {
-        e.preventDefault();
-        var page = $(this).attr("data-href");
-        $(".renderDiv").load(page);
-    });
 });
