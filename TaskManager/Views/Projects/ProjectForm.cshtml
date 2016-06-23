@@ -1,20 +1,22 @@
-﻿
+﻿@model dynamic
 @{
     ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>New</h2>
 
-<form>
+<form id="formId">
     <div class="form-group">
         <label>Name</label>
-        <input id="pr-name" name="name" required type="text" value="" class="form-control"/>
+        <input id="pr-name" required type="text" value="" class="form-control" />
     </div>
 
-    <button class="btn btn-primary">Create</button>
+    <button id="newProject" class="btn btn-primary">Create</button>
 </form>
 
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/projectForm.js"></script>
 }

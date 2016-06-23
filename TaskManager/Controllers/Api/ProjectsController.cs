@@ -43,10 +43,15 @@ namespace TaskManager.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            _context.Projects.Add(project);
+            var newProject = new Project
+            {
+                Name = project.Name
+            };
+
+            _context.Projects.Add(newProject);
             _context.SaveChanges();
 
-            return Created(new Uri(Request.RequestUri + "/" + project.Id), project);
+            return Ok();
         }
 
         //PUT api/projects/1
