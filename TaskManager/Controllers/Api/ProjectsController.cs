@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using TaskManager.Models;
+using System.Data.Entity;
 
 namespace TaskManager.Controllers.Api
 {
@@ -33,7 +34,9 @@ namespace TaskManager.Controllers.Api
             if (project == null)
                 return NotFound();
 
-            return Ok(project);
+            var tasks = (from p in _context.ProjectTasks where p.Project.Id == id select p).ToList();
+
+            return Ok(tasks);
         }
 
         // POST api/projects

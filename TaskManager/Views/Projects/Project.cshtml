@@ -1,0 +1,32 @@
+﻿@model int?
+@{
+    ViewBag.Title = "Project";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Project</h2>
+
+<div class="row">
+    <div class="col-md-4 col-sm-4">
+        <ul id="task" class="list-group"></ul>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "/api/projects/" + @Model,
+                type: "GET",
+                success: function (data) {
+                    $("#task").append("<li class='list-group-item'>" + data.name + "</li>");
+                },
+                "error": function (data) {
+                    var response = data.responseText;
+                    alert('Error loading: ' + response);
+                }
+            });
+        });
+    </script>
+}

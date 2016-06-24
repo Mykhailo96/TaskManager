@@ -17,18 +17,12 @@ namespace TaskManager.Models
         public DateTime Deadline { get; set; }
 
         [Required]
-        public byte StatusId { get; set; }
-
         public Status Status { get; set; }
 
         [Required]
-        public byte PriorityId { get; set; }
-
         public Priority Priority { get; set; }
 
         [Required]
-        public int ProjectId { get; set; }
-
         public Project Project { get; set; }
     }
 }

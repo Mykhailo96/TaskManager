@@ -198,6 +198,10 @@
     <Compile Include="Migrations\201606221150271_PopulatePriorityTable.Designer.cs">
       <DependentUpon>201606221150271_PopulatePriorityTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606241244240_RemoveIds.cs" />
+    <Compile Include="Migrations\201606241244240_RemoveIds.Designer.cs">
+      <DependentUpon>201606241244240_RemoveIds.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -448,6 +452,7 @@
     <Content Include="Views\Projects\ProjectForm.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Tasks\List.cshtml" />
+    <Content Include="Views\Projects\Project.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -469,6 +474,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606221150271_PopulatePriorityTable.resx">
       <DependentUpon>201606221150271_PopulatePriorityTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606241244240_RemoveIds.resx">
+      <DependentUpon>201606241244240_RemoveIds.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
