@@ -13,5 +13,7 @@ namespace TaskManager.Models
         [Required]
         [StringLength(50, MinimumLength = 3)]
         public string Name { get; set; }
+
+        public IEnumerable<ProjectTask> Tasks { get; set; }
     }
 }

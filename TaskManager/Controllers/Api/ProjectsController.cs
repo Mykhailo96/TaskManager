@@ -34,9 +34,17 @@ namespace TaskManager.Controllers.Api
             if (project == null)
                 return NotFound();
 
+            var projectApi = new Project
+            {
+                Id = project.Id,
+                Name = project.Name
+            };
+
             var tasks = (from p in _context.ProjectTasks where p.Project.Id == id select p).ToList();
 
-            return Ok(tasks);
+            projectApi.Tasks = tasks;
+
+            return Ok(projectApi);
         }
 
         // POST api/projects

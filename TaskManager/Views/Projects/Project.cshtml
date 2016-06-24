@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Project</h2>
+<h2 id="header"></h2>
 
 <div class="row">
     <div class="col-md-4 col-sm-4">
@@ -15,4 +15,24 @@
 @section scripts
 {
     <script src="~/Scripts/Projects/project.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "/api/projects/" + @Model,
+                type: "GET",
+                success: function (data) {
+                    $("#header").text(data.name);
+                    data.tasks.forEach(myFunction);
+                },
+                error: function (data) {
+                    alert('Error loading: Not found');
+                }
+            });
+        });
+
+        function myFunction(item, index) {
+            $("#task").append("<li class='list-group-item'>" + item.name + "</li>");
+        }
+    </script>
 }
