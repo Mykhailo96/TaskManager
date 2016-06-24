@@ -460,6 +460,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Tasks\List.cshtml" />
     <Content Include="Views\Projects\Project.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Tasks\TaskForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
