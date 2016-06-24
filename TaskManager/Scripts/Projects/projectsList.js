@@ -1,15 +1,16 @@
 ﻿$(document).ready(function () {
     var table = $("#projects").DataTable({
+        bSort: false,
         ajax: {
             url: "/api/projects",
             dataSrc: ""
         },
         columns: [
             {
-                data: "name"/*,
+                data: "name",
                         render: function(data, type, project) {
-                            return "<a href='/projects/edit/" + project.id + "'>" + project.name + "</a>";
-                        }*/
+                            return "<a href='/projects/project/" + project.id + "'>" + project.name + "</a>";
+                        }
             },
             {
                 data: "id",

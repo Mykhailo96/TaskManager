@@ -4,6 +4,7 @@
             url: "/api/tasks",
             dataSrc: ""
         },
+        order: [[ 3, "asc" ]],
         columns: [
             { data: "name" },
             { data: "status.name" },
