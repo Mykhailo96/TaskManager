@@ -5,7 +5,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using TaskManager.Models;
+using TaskManager.Models.Dto;
 using System.Data.Entity;
+using AutoMapper;
 
 namespace TaskManager.Controllers.Api
 {
@@ -40,7 +42,13 @@ namespace TaskManager.Controllers.Api
                 Name = project.Name
             };
 
-            var tasks = (from p in _context.ProjectTasks where p.Project.Id == id select p).ToList();
+            var tasksInDb = _context.ProjectTasks
+                .Include(t => t.Priority)
+                .Include(t => t.Status)
+                .Where(t => t.Project.Id == id)
+                .ToList();
+
+            var tasks = tasksInDb.Select(Mapper.Map<ProjectTask, ProjectTaskDto>);
 
             projectApi.Tasks = tasks;
 
