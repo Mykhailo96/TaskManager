@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
     var table = $("#tasks").DataTable({
         ajax: {
             url: "/api/tasks",
