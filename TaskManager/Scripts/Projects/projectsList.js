@@ -15,7 +15,7 @@
             {
                 data: "id",
                 render: function (data) {
-                    return "<button class='btn-link js-delete' data-project-id=" + data + ">Delete</button>";
+                    return "<img class='js-delete'data-project-id=" + data + " src='../../Content/delete.png' alt='Delete' width='20'/>";
                 }
             }
         ]

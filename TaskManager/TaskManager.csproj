@@ -330,6 +330,7 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\delete.png" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
@@ -460,7 +461,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Tasks\List.cshtml" />
     <Content Include="Views\Projects\Project.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Tasks\TaskForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
