@@ -1,7 +1,30 @@
-﻿
+﻿@model int?
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>TaskForm</h2>
+
+<form id="formId">
+    <div class="form-group">
+        <label>Name</label>
+        <input id="pr-name" required type="text" value="" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Deadline</label>
+        <input id="pr-name" required type="text" value="" class="form-control" />
+    </div>
+
+
+
+
+    <button id="newProject" class="btn btn-primary">Create</button>
+</form>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval");
+}
+  
 

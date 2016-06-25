@@ -6,13 +6,10 @@
 <h2 id="header"></h2>
 
 <p>
-    <a href="/projects/new" class="btn btn-primary">New Task</a>
+    <a href="/tasks/new/@Url.RequestContext.RouteData.Values["id"]"  class="btn btn-primary">New Task</a>
 </p>
 
 <div class="row">
-    @*<div class="col-md-4 col-sm-4">
-        <ul id="task" class="list-group"></ul>
-    </div>*@
     <table id="tasksTable" class="table table-bordered table-hover">
         <thead>
             <tr>
