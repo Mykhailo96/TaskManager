@@ -1,4 +1,4 @@
-﻿@model int?
+﻿@model TaskManager.Models.Dto.ProjectTaskDto
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -6,15 +6,34 @@
 <h2>TaskForm</h2>
 
 <form id="formId">
+
     <div class="form-group">
-        <label>Name</label>
-        <input id="pr-name" required type="text" value="" class="form-control" />
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
-        <label>Deadline</label>
-        <input id="pr-name" required type="text" value="" class="form-control" />
+        @Html.LabelFor(m => m.Deadline)
+        @Html.TextBoxFor(m => m.Deadline, htmlAttributes: new { type = "date", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Deadline, "", new { @class = "text-danger" })
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Priority)
+        @Html.DropDownListFor(m => m.Priority, new SelectList(ViewBag.Priority, "Id", "Name"),"--Select--",
+                                htmlAttributes: new { type = "date", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Priority, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Status)
+        @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.Status, "Id", "Name"), "--Select--",
+                                htmlAttributes: new { type = "date", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
+    </div>
+
+
 
 
 

@@ -29,7 +29,18 @@ namespace TaskManager.Controllers
             if (project == null)
                 return HttpNotFound();
 
-            return View("TaskForm", id);
+            List<Priority> priorities = _context.Priorities.ToList();
+            var status = _context.Status.ToList();
+
+            ViewBag.Priority = priorities;
+            ViewBag.DefaultPriority = priorities[2];
+
+            ViewBag.Status = status;
+            ViewBag.DefaultStatus = status[2];
+
+            ViewBag.PorjectId = id;
+
+            return View("TaskForm");
         }
     }
 }
