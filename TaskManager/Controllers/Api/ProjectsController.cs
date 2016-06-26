@@ -62,12 +62,7 @@ namespace TaskManager.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var newProject = new Project
-            {
-                Name = project.Name
-            };
-
-            _context.Projects.Add(newProject);
+            _context.Projects.Add(project);
             _context.SaveChanges();
 
             return Ok();

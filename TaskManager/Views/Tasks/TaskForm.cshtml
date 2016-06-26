@@ -1,4 +1,4 @@
-﻿@model TaskManager.Models.Dto.ProjectTaskDto
+﻿@model TaskManager.Models.ProjectTask
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,41 +9,68 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.Name)
-        @Html.TextBoxFor(m => m.Name, htmlAttributes: new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Name, htmlAttributes: new { @class = "form-control", id = "t-name" })
         @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.Deadline)
-        @Html.TextBoxFor(m => m.Deadline, htmlAttributes: new { type = "date", @class = "form-control" })
+        @Html.TextBoxFor(m => m.Deadline, htmlAttributes: new { type = "date", @class = "form-control", id = "deadline" })
         @Html.ValidationMessageFor(m => m.Deadline, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Priority)
-        @Html.DropDownListFor(m => m.Priority, new SelectList(ViewBag.Priority, "Id", "Name"),"--Select--",
-                                htmlAttributes: new { type = "date", @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Priority, "", new { @class = "text-danger" })
+        @Html.LabelFor(m => m.PriorityId)
+        @Html.DropDownListFor(m => m.PriorityId, new SelectList(ViewBag.Priority, "Id", "Name"), "--Select--",
+                                htmlAttributes: new { type = "date", @class = "form-control", id = "priority" })
+        @Html.ValidationMessageFor(m => m.PriorityId, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Status)
-        @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.Status, "Id", "Name"), "--Select--",
-                                htmlAttributes: new { type = "date", @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
+        @Html.LabelFor(m => m.StatusId)
+        @Html.DropDownListFor(m => m.StatusId, new SelectList(ViewBag.Status, "Id", "Name"), "--Select--",
+                                htmlAttributes: new { type = "date", @class = "form-control", id = "status" })
+        @Html.ValidationMessageFor(m => m.StatusId, "", new { @class = "text-danger" })
     </div>
 
 
+    @Html.HiddenFor(m => m.ProjectId)
 
-
-
-
-    <button id="newProject" class="btn btn-primary">Create</button>
+    <button id="buttonId" class="btn btn-primary">Create</button>
 </form>
 
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval");
+
+    <script>
+        $(document).ready(function () {
+            $("#buttonId").on("click", function (e) {
+                e.preventDefault();
+
+                var task = {
+                    Name: $('#t-name').val(),
+                    Deadline: $('#deadline').val(),
+                    StatusId: $('#status').val(),
+                    PriorityId: $('#priority').val(),
+                    ProjectId: @Model.ProjectId,
+                }
+
+                $.ajax({
+                    url: "/api/tasks",
+                    type: "POST",
+                    data: JSON.stringify(task),
+                    contentType: "application/json;charset=utf-8",
+                })
+                .done(function() {
+                    toastr.success("Project successfully added.");
+                })
+                .fail(function() {
+                    toastr.error("Something wrong.");
+                })
+            });
+        });
+    </script>
 }
-  
+
 

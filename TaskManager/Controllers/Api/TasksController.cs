@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -45,7 +45,7 @@ namespace TaskManager.Controllers.Api
             _context.ProjectTasks.Add(task);
             _context.SaveChanges();
 
-            return Created(new Uri(Request.RequestUri + "/" + task.Id), task);
+            return Ok();
         }
 
         //PUT api/tasks/1

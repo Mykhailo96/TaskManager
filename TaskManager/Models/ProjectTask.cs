@@ -14,16 +14,21 @@ namespace TaskManager.Models
         [StringLength(255, MinimumLength = 5)]
         public string Name { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Deadline { get; set; }
 
         [Required]
+        [Display(Name = "Status")]
+        public byte StatusId { get; set; }
         public Status Status { get; set; }
 
         [Required]
+        [Display(Name = "Priority")]
+        public byte PriorityId { get; set; }
         public Priority Priority { get; set; }
 
         [Required]
+        public int ProjectId { get; set; }
         public Project Project { get; set; }
     }
 }

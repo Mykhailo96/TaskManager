@@ -33,14 +33,16 @@ namespace TaskManager.Controllers
             var status = _context.Status.ToList();
 
             ViewBag.Priority = priorities;
-            ViewBag.DefaultPriority = priorities[2];
 
             ViewBag.Status = status;
-            ViewBag.DefaultStatus = status[2];
 
-            ViewBag.PorjectId = id;
 
-            return View("TaskForm");
+            ProjectTask task = new ProjectTask
+            {
+                ProjectId = id
+            };
+
+            return View("TaskForm", task);
         }
     }
 }
