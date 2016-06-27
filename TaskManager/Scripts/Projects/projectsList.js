@@ -9,7 +9,7 @@
             {
                 data: "name",
                         render: function(data, type, project) {
-                            return "<a align='left' href='/projects/project/" + project.id + "'>" + project.name + "</a><img align='right' class='js-delete'data-project-id=" + data + " src='../../Content/delete.png' alt='Delete' width='20'/>";
+                            return "<a align='left' href='/projects/project/" + project.id + "'>" + project.name + "</a><img align='right' class='js-delete'data-project-id=" + project.id + " src='../../Content/delete.png' alt='Delete' width='20'/>";
                         }
             }
         ]
