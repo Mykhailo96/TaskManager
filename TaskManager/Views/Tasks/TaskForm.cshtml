@@ -63,7 +63,18 @@
                     contentType: "application/json;charset=utf-8",
                 })
                 .done(function() {
-                    toastr.success("Project successfully added.");
+                    toastr.success("Task successfully added.");
+
+                    task.Name = "";
+                    task.Deadline = "";
+                    task.StatusId = "";
+                    task.PriorityId = "";
+                    task.ProjectId = "";
+
+                    $('#t-name').val("");
+                    $('#deadline').val("");
+                    $('#status').val("");
+                    $('#priority').val("");
                 })
                 .fail(function() {
                     toastr.error("Something wrong.");

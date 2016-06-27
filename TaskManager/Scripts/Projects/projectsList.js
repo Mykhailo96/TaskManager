@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     var table = $("#projects").DataTable({
-        bSort: false,
+        bSort: true,
         ajax: {
             url: "/api/projects",
             dataSrc: ""
@@ -9,14 +9,8 @@
             {
                 data: "name",
                         render: function(data, type, project) {
-                            return "<a href='/projects/project/" + project.id + "'>" + project.name + "</a>";
+                            return "<a align='left' href='/projects/project/" + project.id + "'>" + project.name + "</a><img align='right' class='js-delete'data-project-id=" + data + " src='../../Content/delete.png' alt='Delete' width='20'/>";
                         }
-            },
-            {
-                data: "id",
-                render: function (data) {
-                    return "<img class='js-delete'data-project-id=" + data + " src='../../Content/delete.png' alt='Delete' width='20'/>";
-                }
             }
         ]
     });
