@@ -21,22 +21,22 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.PriorityId)
-        @Html.DropDownListFor(m => m.PriorityId, new SelectList(ViewBag.Priority, "Id", "Name"), "--Select--",
+        @Html.DropDownListFor(m => m.PriorityId, new SelectList(ViewBag.Priority, "Id", "Name"), "",
                                 htmlAttributes: new { type = "date", @class = "form-control", id = "priority" })
         @Html.ValidationMessageFor(m => m.PriorityId, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.StatusId)
-        @Html.DropDownListFor(m => m.StatusId, new SelectList(ViewBag.Status, "Id", "Name"), "--Select--",
+        @Html.DropDownListFor(m => m.StatusId, new SelectList(ViewBag.Status, "Id", "Name"), "",
                                 htmlAttributes: new { type = "date", @class = "form-control", id = "status" })
         @Html.ValidationMessageFor(m => m.StatusId, "", new { @class = "text-danger" })
     </div>
 
-
+    @Html.HiddenFor(m => m.Id)
     @Html.HiddenFor(m => m.ProjectId)
 
-    <button id="buttonId" class="btn btn-primary">Create</button>
+    <button id="buttonId" type="button" class="btn btn-primary"></button>
 </form>
 
 @section scripts
@@ -44,7 +44,13 @@
     @Scripts.Render("~/bundles/jqueryval");
 
     <script>
+
+        if(@Model.Id !=  0)
+            $("#buttonId").html("Save");
+        else
+            $("#buttonId").html("Create");
         $(document).ready(function () {
+
             $("#buttonId").on("click", function (e) {
                 e.preventDefault();
 

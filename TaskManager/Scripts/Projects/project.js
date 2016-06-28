@@ -5,7 +5,12 @@
         paging: false,
         order: [[ 3, "asc" ]],
         columns: [
-            { data: "name" },
+            {
+                data: "name",
+                render: function (data, type, task) {
+                    return "<a align='left' href='/tasks/task/" + task.id + "'>" + task.name + "</a>";
+                }
+            },
             { data: "status.name" },
             { data: "priority.name" },
             {
