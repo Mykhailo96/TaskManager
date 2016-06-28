@@ -61,6 +61,9 @@ namespace TaskManager.Controllers.Api
                 return NotFound();
 
             taskInDb.Name = task.Name;
+            taskInDb.Deadline = task.Deadline;
+            taskInDb.StatusId = task.StatusId;
+            taskInDb.PriorityId = task.PriorityId;
 
             _context.SaveChanges();
 

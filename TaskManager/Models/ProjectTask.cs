@@ -14,7 +14,8 @@ namespace TaskManager.Models
         [StringLength(255, MinimumLength = 5)]
         public string Name { get; set; }
 
-        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Deadline { get; set; }
 
         [Required]

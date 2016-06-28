@@ -5,7 +5,7 @@
 
 <h2>TaskForm</h2>
 
-<form id="formId">
+<form id="formId" lang="en-gb">
 
     <div class="form-group">
         @Html.LabelFor(m => m.Name)
@@ -45,6 +45,8 @@
 
     <script>
 
+        $("#deadline").val(@Model.Deadline.Month + "/" + @Model.Deadline.Day + "/" + @Model.Deadline.Year);
+
         if(@Model.Id !=  0)
             $("#buttonId").html("Save");
         else
@@ -62,29 +64,46 @@
                     ProjectId: @Model.ProjectId,
                 }
 
-                $.ajax({
-                    url: "/api/tasks",
-                    type: "POST",
-                    data: JSON.stringify(task),
-                    contentType: "application/json;charset=utf-8",
-                })
-                .done(function() {
-                    toastr.success("Task successfully added.");
+                if(@Model.Id == 0) {
+                    $.ajax({
+                        url: "/api/tasks",
+                        type: "POST",
+                        data: JSON.stringify(task),
+                        contentType: "application/json;charset=utf-8",
+                    })
+                    .done(function() {
+                        toastr.success("Task successfully added.");
 
-                    task.Name = "";
-                    task.Deadline = "";
-                    task.StatusId = "";
-                    task.PriorityId = "";
-                    task.ProjectId = "";
+                        task.Name = "";
+                        task.Deadline = "";
+                        task.StatusId = "";
+                        task.PriorityId = "";
+                        task.ProjectId = "";
 
-                    $('#t-name').val("");
-                    $('#deadline').val("");
-                    $('#status').val("");
-                    $('#priority').val("");
-                })
-                .fail(function() {
-                    toastr.error("Something wrong.");
-                })
+                        $('#t-name').val("");
+                        $('#deadline').val("");
+                        $('#status').val("");
+                        $('#priority').val("");
+                    })
+                    .fail(function() {
+                        toastr.error("Something wrong.");
+                    })
+                }
+                else {
+                    $.ajax({
+                        url: "/api/tasks/" + @Model.Id,
+                        type: "PUT",
+                        data: JSON.stringify(task),
+                        contentType: "application/json;charset=utf-8",
+                    })
+                    .done(function() {
+                        toastr.success("Task successfully updated.");
+                    })
+                    .fail(function() {
+                        toastr.error("Something wrong.");
+                    })
+                }
+
             });
         });
     </script>
