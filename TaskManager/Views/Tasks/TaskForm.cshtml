@@ -1,0 +1,112 @@
+﻿@model TaskManager.Models.ProjectTask
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>TaskForm</h2>
+
+<form id="formId" lang="en-gb">
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, htmlAttributes: new { @class = "form-control", id = "t-name" })
+        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Deadline)
+        @Html.TextBoxFor(m => m.Deadline, htmlAttributes: new { type = "date", @class = "form-control", id = "deadline" })
+        @Html.ValidationMessageFor(m => m.Deadline, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.PriorityId)
+        @Html.DropDownListFor(m => m.PriorityId, new SelectList(ViewBag.Priority, "Id", "Name"), "",
+                                htmlAttributes: new { type = "date", @class = "form-control", id = "priority" })
+        @Html.ValidationMessageFor(m => m.PriorityId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.StatusId)
+        @Html.DropDownListFor(m => m.StatusId, new SelectList(ViewBag.Status, "Id", "Name"), "",
+                                htmlAttributes: new { type = "date", @class = "form-control", id = "status" })
+        @Html.ValidationMessageFor(m => m.StatusId, "", new { @class = "text-danger" })
+    </div>
+
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.ProjectId)
+
+    <button id="buttonId" type="button" class="btn btn-primary"></button>
+</form>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval");
+
+    <script>
+
+        $("#deadline").val(@Model.Deadline.Month + "/" + @Model.Deadline.Day + "/" + @Model.Deadline.Year);
+
+        if(@Model.Id !=  0)
+            $("#buttonId").html("Save");
+        else
+            $("#buttonId").html("Create");
+        $(document).ready(function () {
+
+            $("#buttonId").on("click", function (e) {
+                e.preventDefault();
+
+                var task = {
+                    Name: $('#t-name').val(),
+                    Deadline: $('#deadline').val(),
+                    StatusId: $('#status').val(),
+                    PriorityId: $('#priority').val(),
+                    ProjectId: @Model.ProjectId,
+                }
+
+                if(@Model.Id == 0) {
+                    $.ajax({
+                        url: "/api/tasks",
+                        type: "POST",
+                        data: JSON.stringify(task),
+                        contentType: "application/json;charset=utf-8",
+                    })
+                    .done(function() {
+                        toastr.success("Task successfully added.");
+
+                        task.Name = "";
+                        task.Deadline = "";
+                        task.StatusId = "";
+                        task.PriorityId = "";
+                        task.ProjectId = "";
+
+                        $('#t-name').val("");
+                        $('#deadline').val("");
+                        $('#status').val("");
+                        $('#priority').val("");
+                    })
+                    .fail(function() {
+                        toastr.error("Something wrong.");
+                    })
+                }
+                else {
+                    $.ajax({
+                        url: "/api/tasks/" + @Model.Id,
+                        type: "PUT",
+                        data: JSON.stringify(task),
+                        contentType: "application/json;charset=utf-8",
+                    })
+                    .done(function() {
+                        toastr.success("Task successfully updated.");
+                    })
+                    .fail(function() {
+                        toastr.error("Something wrong.");
+                    })
+                }
+
+            });
+        });
+    </script>
+}
+
+

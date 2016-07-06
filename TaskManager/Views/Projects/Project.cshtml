@@ -1,0 +1,76 @@
+﻿@model int?
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form class="form-inline">
+    <input id="inputId" class="form-control input-lg" readonly type="text" value="" />
+    <button id="editButton" type="button" class="btn btn-info btn-xs">Edit name</button>
+    <br />
+
+    <p align="right">
+        <a href="/tasks/new/@Url.RequestContext.RouteData.Values["id"]" class="btn btn-primary">New Task</a>
+    </p>
+
+    <table id="tasksTable" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th> Priority</th>
+                <th>Deadline</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</form>
+@section scripts
+{
+    <script src="~/Scripts/Projects/project.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "/api/projects/" + @Model,
+                type: "GET",
+
+            })
+            .done(function(data) {
+                $("#inputId").val(data.name);
+                $("#header").text(data.name);
+                myFunction(data.tasks);
+            })
+            .fail(function() {
+                alert('Error loading: Not found');
+            });
+        });
+
+        var vm = {
+            Name: ""
+        }
+        $("#editButton").on("click", function () {
+            if (this.innerText == "Edit name") {
+                $("#inputId").removeAttr("readonly");
+                this.innerText = "Save";
+            }
+            else {
+                $("#inputId").prop("readonly", true);
+                this.innerText = "Edit name";
+
+                vm.Name = $("#inputId").val();
+
+                $.ajax({
+                    url: "/api/projects/" + @Model,
+                    type:"PUT",
+                    data: vm,
+                })
+                .done(function() {
+                    toastr.success("Name was changed successfully.");
+                })
+                .fail(function() {
+                    toastr.error("Something wrong.")
+                })
+            }
+        });
+    </script>
+}
